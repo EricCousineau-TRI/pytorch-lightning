@@ -175,10 +175,22 @@ If the optimizer you want needs other arguments, add them via the CLI (no need t
 
 ----
 
-********************
-Custom LR schedulers
-********************
-Any subclass of ``torch.optim.lr_scheduler._LRScheduler`` can be used as learning rate scheduler:
+*******************
+Multiple schedulers
+*******************
+Standard learning rate schedulers from ``torch.optim.lr_scheduler``  work out of the box:
+
+.. code:: bash
+
+    python main.py fit --lr_scheduler CosineAnnealingLR
+
+If the scheduler you want needs other arguments, add them via the CLI (no need to change your code)!
+
+.. code:: bash
+
+    python main.py fit --lr_scheduler=ReduceLROnPlateau --lr_scheduler.monitor=epoch
+
+Furthermore, any custom subclass of ``torch.optim.lr_scheduler.LRScheduler`` can be used as learning rate scheduler:
 
 .. code:: python
 
